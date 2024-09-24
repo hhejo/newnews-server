@@ -18,19 +18,16 @@ export const getBooksNew = async (req, res) => {
     SearchTarget: 'Book',
     Cover: 'Big',
   };
-  // const headers = {};
   if (
     lastUpdateTime + TIME_DIFF > Date.now() &&
     Object.keys(cacheBooks).length > 0
   ) {
-    res.header('Access-Control-Allow-Origin', '*');
     console.log('Cached books');
     return res.json(cacheBooks);
   }
   try {
     const { data } = await axios.get(url, { params });
     cacheBooks = data;
-    res.header('Access-Control-Allow-Origin', '*');
     console.log('Fetched books');
     return res.json(data);
   } catch (err) {
@@ -47,19 +44,16 @@ export const getBook = async (req, res) => {
     ItemId: isbn13,
     Cover: 'big',
   };
-  // const headers = {};
   if (
     lastUpdateTime + TIME_DIFF > Date.now() &&
     Object.keys(cacheBook).length > 0
   ) {
-    res.header('Access-Control-Allow-Origin', '*');
     console.log('Cached book');
     return res.json(cacheBook);
   }
   try {
     const { data } = await axios.get(url, { params });
     cacheBook = data;
-    res.header('Access-Control-Allow-Origin', '*');
     console.log('Fetched book');
     return res.json(data);
   } catch (err) {
