@@ -12,12 +12,12 @@ export const getBooksNew = async (req, res) => {
   const url = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx';
   const params = {
     ...baseParams,
-    QueryType: 'ItemNewAll',
-    MaxResults: 10,
-    start: 1,
-    SearchTarget: 'Book',
-    Cover: 'Big',
+    queryType: 'ItemNewAll',
+    maxResults: 10,
+    searchTarget: 'Book',
+    cover: 'Big',
   };
+
   if (
     lastUpdateTime + TIME_DIFF > Date.now() &&
     Object.keys(cacheBooks).length > 0
@@ -25,6 +25,7 @@ export const getBooksNew = async (req, res) => {
     console.log('Cached books');
     return res.json(cacheBooks);
   }
+
   try {
     const { data } = await axios.get(url, { params });
     cacheBooks = data;
@@ -41,9 +42,10 @@ export const getBook = async (req, res) => {
   const params = {
     ...baseParams,
     itemIdType: 'ISBN',
-    ItemId: isbn13,
-    Cover: 'big',
+    itemId: isbn13,
+    cover: 'big',
   };
+
   if (
     lastUpdateTime + TIME_DIFF > Date.now() &&
     Object.keys(cacheBook).length > 0
@@ -51,6 +53,7 @@ export const getBook = async (req, res) => {
     console.log('Cached book');
     return res.json(cacheBook);
   }
+
   try {
     const { data } = await axios.get(url, { params });
     cacheBook = data;
