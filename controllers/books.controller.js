@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TTB_KEY } from '../env.mjs';
 
 const TIME_DIFF = 600_000; // 10분
 const lastUpdateTime = Date.now();
