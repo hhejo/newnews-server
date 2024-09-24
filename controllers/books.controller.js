@@ -6,19 +6,19 @@ const lastUpdateTime = Date.now();
 let cacheBooks = [];
 let cacheBook = {};
 
+const baseParams = { ttbkey: TTB_KEY, output: 'js', version: 20131101 };
+
 export const getBooksNew = async (req, res) => {
   const url = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx';
   const params = {
-    ttbkey: TTB_KEY,
+    ...baseParams,
     QueryType: 'ItemNewAll',
     MaxResults: 10,
     start: 1,
     SearchTarget: 'Book',
-    output: 'js',
-    Version: 20131101,
     Cover: 'Big',
   };
-  const headers = {};
+  // const headers = {};
   if (
     lastUpdateTime + TIME_DIFF > Date.now() &&
     Object.keys(cacheBooks).length > 0
@@ -28,7 +28,7 @@ export const getBooksNew = async (req, res) => {
     return res.json(cacheBooks);
   }
   try {
-    const { data } = await axios.get(url, { params, headers });
+    const { data } = await axios.get(url, { params });
     cacheBooks = data;
     res.header('Access-Control-Allow-Origin', '*');
     console.log('Fetched books');
@@ -42,15 +42,12 @@ export const getBook = async (req, res) => {
   const url = 'http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx';
   const { isbn13 } = req.params;
   const params = {
-    ttbkey: TTB_KEY,
+    ...baseParams,
     itemIdType: 'ISBN',
     ItemId: isbn13,
-    output: 'js',
-    Version: 20131101,
     Cover: 'big',
-    // OptResult: 'ebookList,usedList,reviewList',
   };
-  const headers = {};
+  // const headers = {};
   if (
     lastUpdateTime + TIME_DIFF > Date.now() &&
     Object.keys(cacheBook).length > 0
@@ -60,7 +57,7 @@ export const getBook = async (req, res) => {
     return res.json(cacheBook);
   }
   try {
-    const { data } = await axios.get(url, { params, headers });
+    const { data } = await axios.get(url, { params });
     cacheBook = data;
     res.header('Access-Control-Allow-Origin', '*');
     console.log('Fetched book');
