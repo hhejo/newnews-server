@@ -17,7 +17,6 @@ export const searchBook = async (req, res) => {
 
   try {
     const { data } = await axios.get(url, { params });
-    console.log(data);
     return res.json(data);
   } catch (err) {
     console.error('Error:', err);
