@@ -1,14 +1,22 @@
 import express from 'express';
 import cors from 'cors';
+import swaggerUI from 'swagger-ui-express';
+import swaggerSpec from './swagger/swagger-docs.js';
 import booksRouter from './routes/books.js';
 import searchRouter from './routes/search.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+function init() {
+  app.use(cors());
+  app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+  app.use('/api/books', booksRouter);
+  app.use('/api/search', searchRouter);
+  app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+    console.log(`Swagger docs available at http://localhost:${port}/api-docs`);
+  });
+}
 
-app.use('/api/books', booksRouter);
-app.use('/api/search', searchRouter);
-
-app.listen(port, () => console.log(`App listening on port ${port}`));
+init();
