@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { baseUrl, baseParams } from './books-variables.mjs';
-import { getBooksFromData } from './books-functions.mjs';
+import { getBooksFromData, getBookFromData } from './books-functions.mjs';
 import { cachingDecorator } from './books-cache.mjs';
 
 export const getBooks = cachingDecorator(async (req, res) => {
@@ -21,8 +21,9 @@ export const getBook = cachingDecorator(async (req, res) => {
   const params = { ...baseParams, ...req.query, itemId: req.params.isbn13 }; // ?ttbkey=TTBKEY&output=js&version=20131101&itemIdType=ISBN&cover=big&itemId=ITEMID
   try {
     const { data } = await axios.get(url, { params, timeout: 10_000 });
-    res.json(data);
-    return data;
+    const book = getBookFromData(data);
+    res.json(book);
+    return book;
   } catch (err) {
     console.error('Error:', err);
   }
