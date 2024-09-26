@@ -27,3 +27,5 @@ export function getBooksFromData(data) {
   }
   return books;
 }
+
+export function getBookFromData(data) {}
