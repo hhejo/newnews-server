@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TTB_KEY } from '../env.mjs';
+import { TTB_KEY } from '../../env.mjs';
 
 const baseParams = { ttbkey: TTB_KEY, output: 'js', version: 20131101 };
 
