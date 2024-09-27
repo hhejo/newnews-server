@@ -13,10 +13,11 @@ function init() {
   app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
   app.use('/api/books', booksRouter);
   app.use('/api/search', searchRouter);
-  app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
-    console.log(`Swagger docs available at http://localhost:${port}/api-docs`);
-  });
+  app.listen(port, () =>
+    console.log(
+      `App listening on port ${port}, Swagger docs available at http://localhost: ${port}/api-docs`
+    )
+  );
 }
 
 init();

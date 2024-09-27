@@ -5,7 +5,7 @@ import {
   getBooksFromData,
   getBookFromData,
   cachingDecorator,
-} from './books.utils.mjs';
+} from './books.utils.js';
 
 export const getBooks = cachingDecorator(async (req, res) => {
   const url = `${baseUrl}/ItemList.aspx`; // http://www.aladin.co.kr/ttb/api/ItemList.aspx
