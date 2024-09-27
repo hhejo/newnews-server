@@ -3,16 +3,16 @@ import swaggerJSDoc from 'swagger-jsdoc';
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
-    title: 'Books API',
+    title: 'Newnews API',
     version: '1.0.0',
-    description: 'API documentation for books routes',
+    description: 'API documentation for Newnews',
   },
-  servers: [{ url: 'http://127.0.0.1:3000' }],
+  servers: [{ url: 'http://localhost:3000' }],
 };
 
 const options = {
   swaggerDefinition,
-  apis: ['./routes/*.js', './docs/swagger/*.js'], // routes 폴더에 있는 파일에서 Swagger 주석을 읽어옴
+  apis: ['./routes/*.js', './docs/swagger/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
