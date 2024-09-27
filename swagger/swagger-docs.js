@@ -12,7 +12,7 @@ const swaggerDefinition = {
 
 const options = {
   swaggerDefinition,
-  apis: ['./routes/*.js'], // routes 폴더에 있는 파일에서 Swagger 주석을 읽어옴
+  apis: ['./routes/*.js', './docs/swagger/*.js'], // routes 폴더에 있는 파일에서 Swagger 주석을 읽어옴
 };
 
 const swaggerSpec = swaggerJSDoc(options);
