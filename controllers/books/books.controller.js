@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { baseUrl, baseParams } from './books.constants.mjs';
 import {
+  baseUrl,
+  baseParams,
   getBooksFromData,
   getBookFromData,
   cachingDecorator,
