@@ -1,11 +1,7 @@
 import axios from 'axios';
-import {
-  baseUrl,
-  baseParams,
-  getBooksFromData,
-  getBookFromData,
-  cachingDecorator,
-} from './books.utils.js';
+import { getBooksFromData, getBookFromData } from './books.utils.js';
+import { baseUrl, baseParams } from '../../utils/constants.js';
+import { cachingDecorator } from '../../utils/utils.js';
 
 export const getBooks = cachingDecorator(async (req, res) => {
   const url = `${baseUrl}/ItemList.aspx`; // http://www.aladin.co.kr/ttb/api/ItemList.aspx

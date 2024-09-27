@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { TTB_KEY } from '../../env.mjs';
-
-const baseParams = { ttbkey: TTB_KEY, output: 'js', version: 20131101 };
+import { baseUrl, baseParams } from '../../utils/constants.js';
 
 export const searchBook = async (req, res) => {
   const url = 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';

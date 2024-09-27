@@ -1,8 +1,3 @@
-import { TTB_KEY } from '../../env.mjs';
-
-export const baseUrl = 'http://www.aladin.co.kr/ttb/api';
-export const baseParams = { ttbkey: TTB_KEY, output: 'js', version: 20131101 };
-
 export function getBooksFromData(data) {
   const { item } = data;
   const books = [];
@@ -57,19 +52,4 @@ export function getBookFromData(data) {
     itemPage: it.subInfo.itemPage, // 쪽 수
   };
   return book;
-}
-
-export function cachingDecorator(f, TIME_DIFF) {
-  let lastUpdateTime = Date.now();
-  let cache = null;
-  return async (req, res) => {
-    if (lastUpdateTime + TIME_DIFF > Date.now() && cache !== null) {
-      console.log('cache');
-      return res.json(cache);
-    }
-    const result = await f(req, res);
-    cache = result;
-    lastUpdateTime = Date.now();
-    return result;
-  };
 }
