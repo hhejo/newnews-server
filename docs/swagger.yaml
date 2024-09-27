@@ -1,0 +1,188 @@
+openapi: 3.0.0
+info:
+  title: Newnews API
+  version: 1.0.0
+  description: API documentation for Newnews
+servers:
+  - url: http://localhost:3000
+    description: Local development
+paths:
+  /api/books:
+    get:
+      summary: Returns a list of books filtered by queryType
+      description: Returns a list of books filtered by queryType
+      parameters:
+        - in: query
+          name: queryType
+          schema:
+            type: string
+            enum: [ItemNewAll, ItemNewSpecial, Bestseller]
+          required: true
+          description: The type of query (e.g., new or special or bestsellers)
+        - in: query
+          name: cover
+          schema:
+            type: string
+            enum: [Big, MidBig, Mid, Small, Mini, None]
+          required: true
+          description: The size of the book cover
+        - in: query
+          name: maxResults
+          schema:
+            type: integer
+            example: 10
+          required: true
+          description: The maximum number of results to return
+      responses:
+        200:
+          description: A list of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: The title of the book
+                    link:
+                      type: string
+                      description: The URL lilnk to the book
+                    author:
+                      type: string
+                      description: The author of the book
+                    pubDate:
+                      type: date
+                      description: The publication date of the book
+                    description:
+                      type: string
+                      description: A brief description or synopsis of the book
+                    isbn13:
+                      type: string
+                      description: The ISBN-13 code of the book
+                    itemId:
+                      type: number
+                      description: The unique item ID of the book
+                    priceSales:
+                      type: number
+                      description: The sale price of the book
+                    priceStandard:
+                      type: number
+                      description: The regular or standard price of the book
+                    stockStatus:
+                      type: string
+                      description: The current stock status
+                    mileage:
+                      type: number
+                      description: The reward points or mileage earned for purchasing the book
+                    cover:
+                      type: string
+                      description: The size of the book cover image
+                    categoryId:
+                      type: number
+                      description: The ID of the book's category
+                    categoryName:
+                      type: string
+                      description: The name of the book's category
+                    publisher:
+                      type: string
+                      description: The name of the publisher
+                    adult:
+                      type: boolean
+                      description: Indicates whether the book is intended for adults only
+                    subTitle:
+                      type: string
+                      description: The subTitle of the book, if applicable
+                    originalTitle:
+                      type: string
+                      description: The originalTitle of the book, if it was translated
+                    itemPage:
+                      type: number
+                      description: The number of pages in the book
+  /api/books/{isbn13}:
+    get:
+      summary: Returns ...
+      description: Returns ...
+      parameters:
+        - in: path
+          name: isbn13
+          schema:
+            type: string
+            example: 9791198889607
+          required: true
+          description: ...
+        - in: query
+          name: cover
+          schema:
+            type: string
+            enum: [Big, MidBig, Mid, Small, Mini, None]
+          required: true
+          description: The size of the book cover
+      responses:
+        200:
+          description: A list of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: The title of the book
+                    link:
+                      type: string
+                      description: The URL lilnk to the book
+                    author:
+                      type: string
+                      description: The author of the book
+                    pubDate:
+                      type: date
+                      description: The publication date of the book
+                    description:
+                      type: string
+                      description: A brief description or synopsis of the book
+                    isbn13:
+                      type: string
+                      description: The ISBN-13 code of the book
+                    itemId:
+                      type: number
+                      description: The unique item ID of the book
+                    priceSales:
+                      type: number
+                      description: The sale price of the book
+                    priceStandard:
+                      type: number
+                      description: The regular or standard price of the book
+                    stockStatus:
+                      type: string
+                      description: The current stock status
+                    mileage:
+                      type: number
+                      description: The reward points or mileage earned for purchasing the book
+                    cover:
+                      type: string
+                      description: The size of the book cover image
+                    categoryId:
+                      type: number
+                      description: The ID of the book's category
+                    categoryName:
+                      type: string
+                      description: The name of the book's category
+                    publisher:
+                      type: string
+                      description: The name of the publisher
+                    adult:
+                      type: boolean
+                      description: Indicates whether the book is intended for adults only
+                    subTitle:
+                      type: string
+                      description: The subTitle of the book, if applicable
+                    originalTitle:
+                      type: string
+                      description: The originalTitle of the book, if it was translated
+                    itemPage:
+                      type: number
+                      description: The number of pages in the book
